@@ -12,6 +12,9 @@ func _ready():
 		for j in range(2):
 			backgrounds[i].append(get_node("dynamic_background_" + str(i) + str(j)))
 		end_coords.append(-screen_width + backgrounds[i][0].get_position().x)
+	print(backgrounds[0][0].get_texture().get_size().x)
+	print(backgrounds[0][0].get_position().x)
+	print(screen_width)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,7 +25,7 @@ func _process(delta):
 			position.x -= move_speed[i] * delta
 			
 			var size = backgrounds[i][j].get_texture().get_size().x
-			if (position.x <= end_coords[i]):
-				position.x += screen_width
+			if (position.x <= -screen_width/2):
+				position.x = screen_width * 1.5
 			
 			backgrounds[i][j].set_position(position)

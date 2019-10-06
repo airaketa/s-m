@@ -31,22 +31,22 @@ scale = Vector2( 0.534945, 0.331011 )
 texture = ExtResource( 2 )
 
 [node name="dynamic_background_00" type="Sprite" parent="."]
-position = Vector2( 512.721, 117.886 )
-scale = Vector2( 0.535601, 0.44923 )
+position = Vector2( 512, 116 )
+scale = Vector2( 0.533328, 0.44923 )
 texture = ExtResource( 3 )
 
 [node name="dynamic_background_01" type="Sprite" parent="."]
-position = Vector2( 1540.72, 117.886 )
+position = Vector2( 1536, 116 )
 scale = Vector2( 0.535601, 0.44923 )
 texture = ExtResource( 3 )
 
 [node name="dynamic_background_10" type="Sprite" parent="."]
-position = Vector2( 512.469, 165.933 )
+position = Vector2( 514.166, 165 )
 scale = Vector2( 0.531043, 0.269668 )
 texture = ExtResource( 4 )
 
 [node name="dynamic_background_11" type="Sprite" parent="."]
-position = Vector2( 1532.48, 165.933 )
+position = Vector2( 1534, 165 )
 scale = Vector2( 0.531043, 0.269668 )
 texture = ExtResource( 4 )
 
@@ -67,5 +67,4 @@ position = Vector2( 280.859, 286.846 )
 scale = Vector2( 5.09789, 4.25861 )
 frames = SubResource( 1 )
 animation = "walk"
-frame = 1
 playing = true
