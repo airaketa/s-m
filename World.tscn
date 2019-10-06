@@ -1,0 +1,71 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Infinite_background.gd" type="Script" id=1]
+[ext_resource path="res://background/game_background_1/layers/sky.png" type="Texture" id=2]
+[ext_resource path="res://background/game_background_1/layers/rocks_1.png" type="Texture" id=3]
+[ext_resource path="res://background/game_background_1/layers/clouds_1.png" type="Texture" id=4]
+[ext_resource path="res://background/game_background_1/layers/clouds_2.png" type="Texture" id=5]
+[ext_resource path="res://player/Run_01.png" type="Texture" id=6]
+[ext_resource path="res://player/Run_02.png" type="Texture" id=7]
+[ext_resource path="res://player/Run_03.png" type="Texture" id=8]
+[ext_resource path="res://player/Run_04.png" type="Texture" id=9]
+[ext_resource path="res://player/Run_05.png" type="Texture" id=10]
+[ext_resource path="res://player/Run_06.png" type="Texture" id=11]
+[ext_resource path="res://player/Run_07.png" type="Texture" id=12]
+[ext_resource path="res://player/Run_08.png" type="Texture" id=13]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "walk",
+"speed": 10.0
+} ]
+
+[node name="World" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="static_background" type="Sprite" parent="."]
+position = Vector2( 512.015, 179.332 )
+scale = Vector2( 0.534945, 0.331011 )
+texture = ExtResource( 2 )
+
+[node name="dynamic_background_00" type="Sprite" parent="."]
+position = Vector2( 512.721, 117.886 )
+scale = Vector2( 0.535601, 0.44923 )
+texture = ExtResource( 3 )
+
+[node name="dynamic_background_01" type="Sprite" parent="."]
+position = Vector2( 1540.72, 117.886 )
+scale = Vector2( 0.535601, 0.44923 )
+texture = ExtResource( 3 )
+
+[node name="dynamic_background_10" type="Sprite" parent="."]
+position = Vector2( 512.469, 165.933 )
+scale = Vector2( 0.531043, 0.269668 )
+texture = ExtResource( 4 )
+
+[node name="dynamic_background_11" type="Sprite" parent="."]
+position = Vector2( 1532.48, 165.933 )
+scale = Vector2( 0.531043, 0.269668 )
+texture = ExtResource( 4 )
+
+[node name="dynamic_background_20" type="Sprite" parent="."]
+position = Vector2( 642.121, 188.458 )
+scale = Vector2( 0.268787, 0.268787 )
+texture = ExtResource( 5 )
+
+[node name="dynamic_background_21" type="Sprite" parent="."]
+position = Vector2( 1684.12, 190.85 )
+scale = Vector2( 0.268787, 0.268787 )
+texture = ExtResource( 5 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
+position = Vector2( 280.859, 286.846 )
+scale = Vector2( 5.09789, 4.25861 )
+frames = SubResource( 1 )
+animation = "walk"
+frame = 1
+playing = true
