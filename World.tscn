@@ -9,6 +9,7 @@
 [node name="World" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+editor/display_folded = true
 
 [node name="texture" type="TextureRect" parent="ParallaxBackground"]
 anchor_right = 1.0
@@ -40,7 +41,8 @@ texture = ExtResource( 3 )
 motion_mirroring = Vector2( 1280, 0 )
 
 [node name="texture" type="TextureRect" parent="ParallaxBackground/bg-3"]
-margin_right = 1920.0
+margin_left = 2.59882
+margin_right = 1922.6
 margin_bottom = 1080.0
 texture = ExtResource( 4 )
 
