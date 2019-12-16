@@ -4,8 +4,8 @@ func _ready():
 	states_map = {
 		"idle": $Idle,
 		"move": $Move,
-		"outOfUpperBound": $OutOfUpperBound,
-		"outOfLowerBound": $OutOfLowerBound,
+		"outOfTopBound": $OutOfTopBound,
+		"outOfBottomBound": $OutOfBottomBound,
 	}
 
 func _change_state(state_name):

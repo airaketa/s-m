@@ -1,21 +1,23 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://player/player_state_machine.gd" type="Script" id=1]
 [ext_resource path="res://player/states/motion/idle.gd" type="Script" id=2]
 [ext_resource path="res://player/states/motion/move.gd" type="Script" id=3]
-[ext_resource path="res://player/sprites/Run_01.png" type="Texture" id=4]
-[ext_resource path="res://player/sprites/Run_02.png" type="Texture" id=5]
-[ext_resource path="res://player/sprites/Run_03.png" type="Texture" id=6]
-[ext_resource path="res://player/sprites/Run_04.png" type="Texture" id=7]
-[ext_resource path="res://player/sprites/Run_05.png" type="Texture" id=8]
-[ext_resource path="res://player/sprites/Run_06.png" type="Texture" id=9]
-[ext_resource path="res://player/sprites/Run_07.png" type="Texture" id=10]
-[ext_resource path="res://player/sprites/Run_08.png" type="Texture" id=11]
-[ext_resource path="res://player/states/debug/state_display.gd" type="Script" id=12]
+[ext_resource path="res://player/states/motion/out_of_top_bound.gd" type="Script" id=4]
+[ext_resource path="res://player/states/motion/out_of_bottom_bound.gd" type="Script" id=5]
+[ext_resource path="res://player/sprites/Run_01.png" type="Texture" id=6]
+[ext_resource path="res://player/sprites/Run_02.png" type="Texture" id=7]
+[ext_resource path="res://player/sprites/Run_03.png" type="Texture" id=8]
+[ext_resource path="res://player/sprites/Run_04.png" type="Texture" id=9]
+[ext_resource path="res://player/sprites/Run_05.png" type="Texture" id=10]
+[ext_resource path="res://player/sprites/Run_06.png" type="Texture" id=11]
+[ext_resource path="res://player/sprites/Run_07.png" type="Texture" id=12]
+[ext_resource path="res://player/sprites/Run_08.png" type="Texture" id=13]
+[ext_resource path="res://player/states/debug/state_display.gd" type="Script" id=14]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "walk",
 "speed": 10.0
@@ -23,6 +25,38 @@ animations = [ {
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 34.7289, 101.458 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "out_of_bottom_bound"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Animation:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 15 ), Vector2( 0, -15 ), Vector2( 0, 10 ), Vector2( 0, -10 ), Vector2( 0, 5 ), Vector2( 0, -5 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "out_of_top_bound"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Animation:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -15 ), Vector2( 0, 15 ), Vector2( 0, -10 ), Vector2( 0, 10 ), Vector2( 0, -5 ), Vector2( 0, 5 ), Vector2( 0, 0 ) ]
+}
 
 [node name="Player" type="Area2D"]
 position = Vector2( 200.748, 356.79 )
@@ -37,9 +71,11 @@ script = ExtResource( 2 )
 [node name="Move" type="Node" parent="StateMachine"]
 script = ExtResource( 3 )
 
-[node name="OutOfUpperBound" type="Node" parent="StateMachine"]
+[node name="OutOfTopBound" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
 
-[node name="OutOfLowerBound" type="Node" parent="StateMachine"]
+[node name="OutOfBottomBound" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
 
 [node name="BodyPivot" type="Position2D" parent="."]
 position = Vector2( 2.66811, -18.677 )
@@ -48,7 +84,7 @@ position = Vector2( 2.66811, -18.677 )
 scale = Vector2( 5, 5 )
 frames = SubResource( 1 )
 animation = "walk"
-frame = 4
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -63,5 +99,10 @@ margin_bottom = -121.0
 text = "Test"
 align = 1
 valign = 1
-script = ExtResource( 12 )
+script = ExtResource( 14 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/out_of_bottom_bound = SubResource( 4 )
+anims/out_of_top_bound = SubResource( 3 )
 [connection signal="state_changed" from="StateMachine" to="StateDisplay" method="_on_Player_state_changed"]
+[connection signal="animation_finished" from="AnimationPlayer" to="StateMachine" method="_on_animation_finished"]
