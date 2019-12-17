@@ -1,4 +1,4 @@
-extends "base.gd"
+extends "motion_base.gd"
 
 func handle_input(event):
 	return .handle_input(event)

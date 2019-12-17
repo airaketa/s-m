@@ -2,9 +2,9 @@
 extends "../state.gd"
 
 var moving_rows = {
-	"top": 315, 
-	"middle": 510,
-	"bottom":  705
+	"top": 300, 
+	"middle": 450,
+	"bottom":  600
 }
 
 func enter():

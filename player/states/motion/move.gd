@@ -1,4 +1,4 @@
-extends "base.gd"
+extends "motion_base.gd"
 
 var velocity = Vector2()
 var speed = 5
